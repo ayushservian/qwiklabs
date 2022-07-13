@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage continueOnError="false" enabled="true" name="AM-BuildLanguagesRequest">
+    <AssignVariable>
+        <Name>translated</Name>
+        <Template>{jsonPath($.data.translations[0].translatedText,request.content)}</Template>
+    </AssignVariable>
+    <Set>
+        <Headers>
+            <Header name="Content-Type">application/json</Header>
+        </Headers>
+        <Verb>POST</Verb>
+        <Payload contentType="application/json">{
+            "target": "{propertyset.language.caller}"
+        }</Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="http" type="request"/>
+</AssignMessage>

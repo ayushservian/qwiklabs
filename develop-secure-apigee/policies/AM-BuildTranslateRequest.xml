@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage continueOnError="false" enabled="true" name="AM-BuildTranslateRequest">
+    <AssignVariable>
+        <Name>text</Name>
+        <Template>{jsonPath($.text,request.content)}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <AssignVariable>
+        <Name>language</Name>
+        <Template>{firstnonnull(request.queryparam.lang,propertyset.language.output)}</Template>
+    </AssignVariable>
+    <Set>
+        <Payload contentType="application/json">{
+            "q": "{text}",
+            "target": "{language}"
+        }</Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

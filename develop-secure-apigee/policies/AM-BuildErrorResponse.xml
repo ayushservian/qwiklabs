@@ -1,0 +1,7 @@
+ <AssignMessage continueOnError="false" enabled="true" name="AM-BuildErrorResponse">
+    <Set>
+        <Payload contentType="application/json">{ "error": "Invalid request. Verify the lang query parameter." }</Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>
